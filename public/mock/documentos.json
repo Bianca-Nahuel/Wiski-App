@@ -1,0 +1,10 @@
+[
+  { "id": 1, "titulo": "Reglamento de Copropiedad", "detalle": "Actualizado: 2018", "categoria": "legal", "url": null },
+  { "id": 2, "titulo": "Póliza Seguro Integral", "detalle": "Vence: Dic 2026", "categoria": "seguros", "url": null },
+  { "id": 3, "titulo": "Libro de Ascensores (QR)", "detalle": "Última rev: Oct 2026", "categoria": "mantenimiento", "url": null },
+  { "id": 4, "titulo": "Acta Asamblea Ordinaria", "detalle": "Celebrada: Ago 2026", "categoria": "actas", "url": null },
+  { "id": 5, "titulo": "Liquidación de Expensas Septiembre", "detalle": "Emitida: Oct 2026", "categoria": "financiero", "url": null },
+  { "id": 6, "titulo": "Certificado Limpieza de Tanques", "detalle": "Vence: Mar 2027", "categoria": "mantenimiento", "url": null },
+  { "id": 7, "titulo": "Reglamento Interno", "detalle": "Actualizado: 2022", "categoria": "legal", "url": null },
+  { "id": 8, "titulo": "Balance Anual 2025", "detalle": "Aprobado: Abr 2026", "categoria": "financiero", "url": null }
+]

@@ -1,0 +1,30 @@
+<section class="brutal-box p-5">
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-3 border-b-2 border-black pb-3">
+    <h1 class="flex items-center gap-2 text-lg font-bold uppercase">
+      <i class="fas fa-folder-open"></i> Bóveda Documental
+    </h1>
+    <input
+      type="search"
+      class="brutal-input max-w-xs"
+      placeholder="Buscar documento…"
+      aria-label="Buscar documento"
+      [value]="busqueda()"
+      (input)="busqueda.set($any($event.target).value)"
+    />
+  </div>
+
+  <app-estado-carga
+    [cargando]="documentos.isLoading()"
+    [error]="documentos.error() !== undefined"
+  />
+
+  <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+    @for (documento of documentosFiltrados(); track documento.id) {
+      <app-documento-item [documento]="documento" />
+    } @empty {
+      @if (!documentos.isLoading()) {
+        <p class="text-sm font-bold text-gray-500">No encontramos documentos.</p>
+      }
+    }
+  </div>
+</section>

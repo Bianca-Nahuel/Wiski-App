@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "titulo": "Filtración techo cochera subsuelo",
+    "estado": "en_proceso",
+    "fecha": "2026-10-11",
+    "autor": { "nombre": "Marta", "unidad": "8°A", "avatarUrl": "https://i.pravatar.cc/150?img=32" },
+    "descripcion": "Cada vez que llueve cae agua sobre la cochera 12. Ya arruinó la pintura del capot.",
+    "respuestaAdmin": "Plomero programado para el Jueves 15:00hs."
+  },
+  {
+    "id": 2,
+    "titulo": "Luz quemada palier principal",
+    "estado": "resuelto",
+    "fecha": "2026-10-02",
+    "autor": { "nombre": "Juan", "unidad": "2°C", "avatarUrl": "https://i.pravatar.cc/150?img=15" },
+    "descripcion": "La luz del palier de planta baja no enciende desde el lunes.",
+    "respuestaAdmin": "Lámpara reemplazada por el encargado."
+  },
+  {
+    "id": 3,
+    "titulo": "Ruidos molestos en terraza",
+    "estado": "abierto",
+    "fecha": "2026-10-12",
+    "autor": { "nombre": "Lucía", "unidad": "10°B", "avatarUrl": "https://i.pravatar.cc/150?img=47" },
+    "descripcion": "El fin de semana hubo música en la terraza hasta las 4 de la mañana.",
+    "respuestaAdmin": null
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "id": 1,
+    "concepto": "Reparación bomba de agua PB",
+    "proveedor": "Plomería San Martín",
+    "monto": 185000,
+    "fecha": "2026-10-08",
+    "estado": "verificado",
+    "respaldos": [
+      { "tipo": "presupuestos", "etiqueta": "3/3 Presupuestos", "ok": true },
+      { "tipo": "factura", "etiqueta": "Factura AFIP", "ok": true },
+      { "tipo": "comprobante", "etiqueta": "Comprobante Transferencia", "ok": true }
+    ]
+  },
+  {
+    "id": 2,
+    "concepto": "Compra artículos limpieza masiva",
+    "proveedor": "Distribuidora Sol",
+    "monto": 295000,
+    "fecha": "2026-10-06",
+    "estado": "irregular",
+    "respaldos": [
+      { "tipo": "presupuestos", "etiqueta": "Faltan Presupuestos Alternativos", "ok": false }
+    ]
+  },
+  {
+    "id": 3,
+    "concepto": "Abono mantenimiento ascensores",
+    "proveedor": "Ascensores del Plata",
+    "monto": 120000,
+    "fecha": "2026-10-03",
+    "estado": "verificado",
+    "respaldos": [
+      { "tipo": "factura", "etiqueta": "Factura AFIP", "ok": true },
+      { "tipo": "comprobante", "etiqueta": "Comprobante Transferencia", "ok": true }
+    ]
+  },
+  {
+    "id": 4,
+    "concepto": "Sueldo y cargas encargado",
+    "proveedor": "Liquidación SUTERH",
+    "monto": 980000,
+    "fecha": "2026-10-02",
+    "estado": "verificado",
+    "respaldos": [
+      { "tipo": "factura", "etiqueta": "Recibo de Sueldo", "ok": true },
+      { "tipo": "comprobante", "etiqueta": "Comprobante Transferencia", "ok": true }
+    ]
+  },
+  {
+    "id": 5,
+    "concepto": "Pintura hall de entrada",
+    "proveedor": "Pinturas Rápidas SRL",
+    "monto": 430000,
+    "fecha": "2026-10-01",
+    "estado": "irregular",
+    "respaldos": [
+      { "tipo": "presupuestos", "etiqueta": "1/3 Presupuestos", "ok": false },
+      { "tipo": "factura", "etiqueta": "Falta Factura AFIP", "ok": false },
+      { "tipo": "comprobante", "etiqueta": "Comprobante Transferencia", "ok": true }
+    ]
+  }
+]

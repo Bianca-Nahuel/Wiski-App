@@ -1,0 +1,67 @@
+<section class="brutal-box overflow-hidden p-0">
+  <div class="flex items-center justify-between border-b-2 border-black p-4">
+    <h1 class="flex items-center gap-2 text-lg font-bold uppercase">
+      <i class="fas fa-bullhorn"></i> Reclamos y Tickets
+    </h1>
+    <button
+      type="button"
+      class="brutal-button-outline px-3 py-1 text-xs font-bold uppercase"
+      [attr.aria-expanded]="formularioAbierto()"
+      (click)="formularioAbierto.set(!formularioAbierto())"
+    >
+      {{ formularioAbierto() ? 'Cancelar' : '+ Nuevo' }}
+    </button>
+  </div>
+
+  @if (formularioAbierto()) {
+    <form
+      class="space-y-4 border-b-2 border-black bg-gray-50 p-4"
+      novalidate
+      (submit)="enviar($event)"
+    >
+      <label class="block">
+        <span class="text-xs font-bold text-gray-500 uppercase">Título</span>
+        <input type="text" class="brutal-input mt-1" [formField]="reclamoForm.titulo" />
+        @if (reclamoForm.titulo().touched()) {
+          @for (error of reclamoForm.titulo().errors(); track error.kind) {
+            <span class="mt-1 block text-xs font-bold text-red-600">{{ error.message }}</span>
+          }
+        }
+      </label>
+
+      <label class="block">
+        <span class="text-xs font-bold text-gray-500 uppercase">Descripción</span>
+        <textarea
+          rows="3"
+          class="brutal-input mt-1"
+          [formField]="reclamoForm.descripcion"
+        ></textarea>
+        @if (reclamoForm.descripcion().touched()) {
+          @for (error of reclamoForm.descripcion().errors(); track error.kind) {
+            <span class="mt-1 block text-xs font-bold text-red-600">{{ error.message }}</span>
+          }
+        }
+      </label>
+
+      <button
+        type="submit"
+        class="brutal-button px-4 py-2 text-xs font-bold tracking-wide uppercase"
+        [disabled]="reclamoForm().submitting()"
+      >
+        Enviar reclamo
+      </button>
+    </form>
+  }
+
+  <app-estado-carga [cargando]="reclamos.isLoading()" [error]="reclamos.error() !== undefined" />
+
+  <div class="space-y-4 p-4">
+    @for (reclamo of reclamosOrdenados(); track reclamo.id) {
+      <app-reclamo-card [reclamo]="reclamo" />
+    } @empty {
+      @if (!reclamos.isLoading()) {
+        <p class="text-sm font-bold text-gray-500">Todavía no hay reclamos.</p>
+      }
+    }
+  </div>
+</section>

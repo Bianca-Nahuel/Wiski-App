@@ -1,0 +1,148 @@
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+  <!-- Columna izquierda: KPIs y bóveda -->
+  <div class="space-y-6 lg:col-span-1">
+    <section class="brutal-box pixel-corner p-5">
+      <h2 class="mb-4 border-b-2 border-black pb-2 text-lg font-bold uppercase">
+        Estado de Cuenta
+      </h2>
+
+      <app-estado-carga
+        [cargando]="estadoCuenta.isLoading()"
+        [error]="estadoCuenta.error() !== undefined"
+      />
+
+      @if (estadoCuenta.hasValue()) {
+        @let cuenta = estadoCuenta.value();
+        <div class="mb-4">
+          <p class="text-xs font-bold text-gray-500 uppercase">
+            Expensa {{ cuenta.periodo | date: 'MMMM' | titlecase }}
+          </p>
+          <h3 class="mt-1 font-mono text-3xl font-bold tracking-tighter">
+            {{ cuenta.expensa | currency: 'ARS' : '$' : '1.0-0' }}
+          </h3>
+          @if (cuenta.pagada) {
+            <div class="mt-2 inline-block bg-black px-2 py-1 text-xs font-bold text-white">
+              PAGADO EL {{ cuenta.fechaPago | date: 'dd/MM' }}
+            </div>
+          } @else {
+            <div
+              class="mt-2 inline-block border-2 border-dashed border-black px-2 py-1 text-xs font-bold text-red-600"
+            >
+              PENDIENTE DE PAGO
+            </div>
+          }
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 border-t-2 border-black pt-4">
+          <div>
+            <p class="text-xs font-bold text-gray-500 uppercase">Fondo Reserva</p>
+            <p class="font-mono font-bold">{{ cuenta.fondoReserva | montoCompacto }}</p>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-gray-500 uppercase">Morosidad</p>
+            <p class="font-mono font-bold text-red-600">
+              {{ cuenta.morosidad | number: '1.0-1' }}%
+            </p>
+          </div>
+        </div>
+      }
+    </section>
+
+    <section class="brutal-box p-5">
+      <div class="mb-4 flex items-center justify-between border-b-2 border-black pb-2">
+        <h2 class="text-lg font-bold uppercase">Bóveda Documental</h2>
+        <a
+          routerLink="/documentos"
+          class="transition-transform hover:scale-125"
+          title="Abrir Bóveda Completa"
+          aria-label="Abrir Bóveda Completa"
+        >
+          <i class="fas fa-folder-open"></i>
+        </a>
+      </div>
+
+      <app-estado-carga
+        [cargando]="documentos.isLoading()"
+        [error]="documentos.error() !== undefined"
+      />
+
+      <div class="space-y-3">
+        @for (documento of documentosDestacados(); track documento.id) {
+          <app-documento-item [documento]="documento" />
+        }
+      </div>
+      <a
+        routerLink="/documentos"
+        class="brutal-button-raise mt-4 block w-full py-2 text-center text-xs font-bold uppercase"
+      >
+        Abrir Bóveda Completa
+      </a>
+    </section>
+  </div>
+
+  <!-- Columna central/derecha: auditoría y reclamos -->
+  <div class="space-y-6 lg:col-span-2">
+    <section class="brutal-box overflow-hidden p-0">
+      <div class="flex items-center justify-between bg-black p-4 text-white">
+        <h2 class="flex items-center gap-2 text-lg font-bold uppercase">
+          <i class="fas fa-search-dollar"></i> Auditoría de Gastos
+        </h2>
+        @if (estadoCuenta.hasValue()) {
+          <span class="bg-white px-2 py-1 text-xs font-bold text-black">
+            {{ estadoCuenta.value().periodo | date: 'MMMM y' | titlecase }}
+          </span>
+        }
+      </div>
+
+      <app-estado-carga [cargando]="gastos.isLoading()" [error]="gastos.error() !== undefined" />
+
+      <div class="space-y-4 p-4">
+        @for (gasto of gastosRecientes(); track gasto.id) {
+          <app-gasto-item [gasto]="gasto" />
+        }
+      </div>
+      <div class="px-4 pb-4">
+        <a
+          routerLink="/gastos"
+          class="brutal-button-raise block w-full py-2 text-center text-xs font-bold uppercase"
+        >
+          Ver Historial Completo
+        </a>
+      </div>
+    </section>
+
+    <section class="brutal-box overflow-hidden p-0">
+      <div class="flex items-center justify-between border-b-2 border-black p-4">
+        <h2 class="flex items-center gap-2 text-lg font-bold uppercase">
+          <i class="fas fa-bullhorn"></i> Reclamos y Tickets
+        </h2>
+        <a
+          routerLink="/reclamos"
+          [queryParams]="{ nuevo: true }"
+          class="brutal-button-outline px-3 py-1 text-xs font-bold uppercase"
+        >
+          + Nuevo
+        </a>
+      </div>
+
+      <app-estado-carga
+        [cargando]="reclamos.isLoading()"
+        [error]="reclamos.error() !== undefined"
+      />
+
+      <div class="space-y-4 p-4">
+        @for (reclamo of reclamosRecientes(); track reclamo.id) {
+          <app-reclamo-card [reclamo]="reclamo" />
+        }
+      </div>
+      <div class="px-4 pb-4">
+        <a
+          routerLink="/reclamos"
+          class="brutal-button-raise block w-full py-2 text-center text-xs font-bold uppercase"
+        >
+          Ver Todos los Reclamos
+        </a>
+      </div>
+    </section>
+  </div>
+</div>

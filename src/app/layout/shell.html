@@ -1,0 +1,82 @@
+<nav class="sticky top-0 z-50 border-b-4 border-black bg-white p-4">
+  <div class="mx-auto flex max-w-7xl items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a routerLink="/tablero" class="font-pixel text-xl tracking-tighter">Wiski</a>
+      <div class="ml-8 hidden gap-4 border-l-2 border-black pl-8 text-sm font-bold md:flex">
+        @for (seccion of secciones; track seccion.ruta) {
+          <a
+            [routerLink]="seccion.ruta"
+            routerLinkActive="underline"
+            class="decoration-2 underline-offset-4 hover:underline"
+          >
+            {{ seccion.etiqueta }}
+          </a>
+        }
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button
+        type="button"
+        class="brutal-button hidden items-center gap-2 px-4 py-2 text-xs font-bold tracking-wide uppercase md:flex"
+      >
+        <i class="fas fa-certificate"></i> Certificá Wiski
+      </button>
+
+      <div class="flex items-center gap-3 border-l-2 border-black pl-4">
+        @if (usuario.value(); as u) {
+          <div class="hidden text-right sm:block">
+            <p class="text-sm font-bold">{{ u.edificio }}</p>
+            <p class="text-xs">U: {{ u.unidad }}</p>
+          </div>
+          <img
+            [src]="u.avatarUrl"
+            [alt]="u.nombre"
+            class="h-10 w-10 border-2 border-black object-cover"
+          />
+        }
+        <button
+          type="button"
+          class="brutal-button-outline px-3 py-2 text-xs font-bold uppercase"
+          title="Cerrar sesión"
+          (click)="salir()"
+        >
+          <i class="fas fa-right-from-bracket"></i>
+          <span class="sr-only">Cerrar sesión</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-3 flex max-w-7xl gap-4 overflow-x-auto text-sm font-bold md:hidden">
+    @for (seccion of secciones; track seccion.ruta) {
+      <a
+        [routerLink]="seccion.ruta"
+        routerLinkActive="underline"
+        class="decoration-2 underline-offset-4"
+      >
+        {{ seccion.etiqueta }}
+      </a>
+    }
+  </div>
+</nav>
+
+<div class="mx-auto mt-6 max-w-7xl px-4">
+  <div
+    class="flex items-center justify-between gap-4 border-2 border-black bg-black p-3 text-white shadow-[4px_4px_0px_#ccc]"
+  >
+    <p class="text-sm font-bold">
+      ¿Pensás vender o alquilar tu unidad? Aumentá su valor con el historial auditado.
+    </p>
+    <button
+      type="button"
+      class="shrink-0 border border-white px-3 py-1 text-xs font-bold transition-colors hover:bg-white hover:text-black"
+    >
+      Iniciar Certificación &gt;
+    </button>
+  </div>
+</div>
+
+<main class="mx-auto mt-4 max-w-7xl p-4">
+  <router-outlet />
+</main>

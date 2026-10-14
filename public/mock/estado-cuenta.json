@@ -1,0 +1,8 @@
+{
+  "periodo": "2026-10-01",
+  "expensa": 45200,
+  "pagada": true,
+  "fechaPago": "2026-10-05",
+  "fondoReserva": 1250000,
+  "morosidad": 12.5
+}

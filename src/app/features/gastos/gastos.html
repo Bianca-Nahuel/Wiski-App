@@ -1,0 +1,57 @@
+<div class="space-y-6">
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+    <div class="brutal-box pixel-corner p-5">
+      <p class="text-xs font-bold text-gray-500 uppercase">Total del período</p>
+      <p class="mt-1 font-mono text-2xl font-bold tracking-tighter">
+        {{ total() | currency: 'ARS' : '$' : '1.0-0' }}
+      </p>
+    </div>
+    <div class="brutal-box p-5">
+      <p class="text-xs font-bold text-gray-500 uppercase">Monto observado</p>
+      <p class="mt-1 font-mono text-2xl font-bold tracking-tighter text-red-600">
+        {{ totalIrregular() | currency: 'ARS' : '$' : '1.0-0' }}
+      </p>
+    </div>
+    <div class="brutal-box p-5">
+      <p class="text-xs font-bold text-gray-500 uppercase">Gastos irregulares</p>
+      <p class="mt-1 font-mono text-2xl font-bold tracking-tighter">
+        {{ cantidadIrregulares() }} de {{ gastos.value().length }}
+      </p>
+    </div>
+  </div>
+
+  <section class="brutal-box overflow-hidden p-0">
+    <div class="flex flex-wrap items-center justify-between gap-3 bg-black p-4 text-white">
+      <h1 class="flex items-center gap-2 text-lg font-bold uppercase">
+        <i class="fas fa-search-dollar"></i> Auditoría de Gastos
+      </h1>
+      <div class="flex gap-2">
+        @for (opcion of filtros; track opcion.valor) {
+          <button
+            type="button"
+            class="border border-white px-2 py-1 text-xs font-bold uppercase transition-colors"
+            [class]="
+              filtro() === opcion.valor ? 'bg-white text-black' : 'hover:bg-white hover:text-black'
+            "
+            [attr.aria-pressed]="filtro() === opcion.valor"
+            (click)="filtro.set(opcion.valor)"
+          >
+            {{ opcion.etiqueta }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <app-estado-carga [cargando]="gastos.isLoading()" [error]="gastos.error() !== undefined" />
+
+    <div class="space-y-4 p-4">
+      @for (gasto of gastosFiltrados(); track gasto.id) {
+        <app-gasto-item [gasto]="gasto" />
+      } @empty {
+        @if (!gastos.isLoading()) {
+          <p class="text-sm font-bold text-gray-500">No hay gastos para este filtro.</p>
+        }
+      }
+    </div>
+  </section>
+</div>
